@@ -32,10 +32,11 @@ function createNewPhotoshopDocument() {
         formattedDocumentName,
         colorModeRGB
     );
-    app.activeDocument = newDocument;
     try {
         var newDocumentFilePath = new File("D:\\Projects\\MyPhotoshopProjects\\" + formattedDocumentName + ".psd");
-        app.activeDocument.saveAs(newDocumentFilePath, new PhotoshopSaveOptions(), true, Extension.LOWERCASE); // Сохраняем документ
+        newDocument.saveAs(newDocumentFilePath, new PhotoshopSaveOptions(), true, Extension.LOWERCASE);
+        newDocument.close()
+        app.open(newDocumentFilePath)
     } catch (error) {
         alert("Saving error - : " + error.message); // Обработка ошибок
     }
